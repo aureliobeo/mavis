@@ -10,16 +10,17 @@
         <button mat-icon-button (click)="toggleChat()">X</button>
     </div>
     <div class="chat-body">
-        <textarea readonly class="chat-messages">
-        {{ messages.join('\n') }}
-      </textarea>
+        <div readonly class="chat-messages">
+            <p>
+                {{ messages.join('\n') }}
+            </p>
+        </div>
     </div>
     <div class="chat-footer">
-        <!-- Input para digitar a mensagem -->
-        <input [(ngModel)]="newMessage" placeholder="Digite sua mensagem..." />
+        <input [(ngModel)]="newMessage" placeholder="Digite sua mensagem..." (keydown.enter)="sendMessage()" />
 
-        <!-- Botão que troca entre microfone e enviar -->
-        <button mat-icon-button color="primary" (click)="isMessageEmpty() ? startVoiceRecognition() : sendMessage()">
+        <button mat-icon-button color="primary" type="submit"
+            (click)="isMessageEmpty() ? startVoiceRecognition() : sendMessage()">
             <mat-icon>{{ isMessageEmpty() ? 'mic' : 'send' }}</mat-icon>
         </button>
     </div>
