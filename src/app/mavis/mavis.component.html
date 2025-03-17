@@ -4,24 +4,27 @@
 </button>
 
 <!-- Caixa de chat -->
-<div *ngIf="showChat" class="chat-box">
-    <div class="chat-header">
-        <span>Chats</span>
-        <button mat-icon-button (click)="toggleChat()">X</button>
-    </div>
-    <div class="chat-body">
-        <div readonly class="chat-messages">
-            <p>
-                {{ messages.join('\n') }}
-            </p>
+<ng-template [ngIf]="showChat">
+    <div class="chat-box">
+        <div class="chat-header">
+            <span>Chats</span>
+            <button mat-icon-button (click)="toggleChat()">X</button>
+        </div>
+        <div class="chat-body">
+            <div readonly class="chat-messages">
+                <p>
+                    {{ messages.join('\n') }}
+                </p>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input [(ngModel)]="newMessage" placeholder="Digite sua mensagem..." (keydown.enter)="sendMessage()" />
+
+            <button mat-icon-button [color]="isMessageEmpty() ? 'accent' : 'primary'" type="submit"
+                (click)="isMessageEmpty() ? startVoiceRecognition() : sendMessage()">
+                <mat-icon [style.color]="isMicActive ? 'red' : 'black'">{{ isMessageEmpty() ? 'mic' : 'send'
+                    }}</mat-icon>
+            </button>
         </div>
     </div>
-    <div class="chat-footer">
-        <input [(ngModel)]="newMessage" placeholder="Digite sua mensagem..." (keydown.enter)="sendMessage()" />
-
-        <button mat-icon-button color="primary" type="submit"
-            (click)="isMessageEmpty() ? startVoiceRecognition() : sendMessage()">
-            <mat-icon>{{ isMessageEmpty() ? 'mic' : 'send' }}</mat-icon>
-        </button>
-    </div>
-</div>
+</ng-template>
