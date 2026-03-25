@@ -176,7 +176,7 @@ export default function HomeScreen() {
           2. Manual: Aperte o botão e grave o comando diretamente com a API.
         </ThemedText>
         <Button 
-          title={isManualMode ? 'Aguardando o seu comando...' : 'Acionar Mavis Manualmente 13'} 
+          title={isManualMode ? 'Aguardando o seu comando...' : 'Acionar Mavis Manualmente 15'} 
           onPress={triggerManualMode}
           color={isManualMode ? 'green' : 'blue'}
         />
